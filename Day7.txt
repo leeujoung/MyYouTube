@@ -1,0 +1,98 @@
+API
+- Application Programming Interface
+- 애플리케이션 소프트웨어를 구축하고 통합하기 위한 정의 및 프로토콜 세트
+
+Rest
+- Representatiaonal State Transfer
+- HTTP URI를 통해 자원을 명시하고 HTTP Method 를 통해서 자원의 대한 CRUD을 적용
+- REST형식을 따른 시스템을 RESTful 이라 부름
+
+graphQL도 참고!!
+https://graphql.org/
+
+
+Youtube api 활용
+1. 구글에서 Youtube api로 검색
+
+2. https://developers.google.com/youtube/v3/getting-started
+
+3. APIs console 클릭
+
+4. 새 프로젝트 만들기
+
+5. API 개요로 이동  -> API 및 서비스 사용설정 클릭 ->  YouTube Data API v3 선택 -> 사용
+
+6. 사용자 인증 정보 만들기 -> YouTube Data API v3, 공개데이터
+
+7. api키 AIzaSyAu1Jt5OkPKcU2SPmBrKi7x14Kz0sYKL00
+
+8. 상위 메뉴 중 Reference -> Search -> Overview , List 메뉴 참조
+
+9. Try this API에 maxResult(화면에 보여질 컨텐츠 개수) : 20, q(검색어), Google OAuth 2.0 체크해제 -> execute (200 : 결과출력)
+
+10. show code -> http에 있는 내용을 복사
+
+    GET https://youtube.googleapis.com/youtube/v3/search?maxResults=20&q=loona&key=[YOUR_API_KEY] HTTP/1.1
+
+    Authorization: Bearer [YOUR_ACCESS_TOKEN]
+    Accept: application/json
+
+
+    Authorization: Bearer [YOUR_ACCESS_TOKEN]
+    Accept: application/json
+
+    url 호출(GET 방식)
+    https://youtube.googleapis.com/youtube/v3/search?maxResults=20&q=loona&key=AIzaSyAu1Jt5OkPKcU2SPmBrKi7x14Kz0sYKL00
+
+
+11. 상위 메뉴 중 Reference -> Videos -> Overview, List
+
+12. Try this API에 chart : mostPopular를 선택 , maxResult(화면에 보여질 컨텐츠 개수) : 20 -> Google OAuth 2.0 체크해제 -> execute (200 : 결과출력)
+
+
+13. show code -> http에 있는 내용을 복사
+
+    GET https://youtube.googleapis.com/youtube/v3/videos?chart=mostPopular&maxResults=20&key=AIzaSyAu1Jt5OkPKcU2SPmBrKi7x14Kz0sYKL00
+
+    Authorization: Bearer [YOUR_ACCESS_TOKEN]
+    Accept: application/json
+
+    url 호출(GET 방식)
+    https://youtube.googleapis.com/youtube/v3/videos?chart=mostPopular&maxResults=20&key=[YOUR_API_KEY]
+
+    *상세 정보가 필요하므로 part에 snippet을 넣어서 다시 호출
+
+    GET https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=20&key=[YOUR_API_KEY] HTTP/1.1
+
+    Authorization: Bearer [YOUR_ACCESS_TOKEN]
+    Accept: application/json
+
+
+    url 호출(GET 방식)
+    ET https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=20&key=AIzaSyAu1Jt5OkPKcU2SPmBrKi7x14Kz0sYKL00
+
+
+PostMan 사용법
+1. new collection -> 이름변경 -> MyYouTube
+
+2. Authorization -> type : api key, key : key, Value : AIzaSyAu1Jt5OkPKcU2SPmBrKi7x14Kz0sYKL00 , Add to : Query Params
+
+3. Variables -> VARIAVLE : base (자기 마음대로 작성), INITIAL VALUE : https://youtube.googleapis.com/youtube/v3 입력
+
+4. add a Requst -> 이름변경 : Search -> GET 방식 선택, URL에 {{base}}/search 입력, part : snippet , maxResult : 20
+
+
+
+자바스크립트 fatch()함수
+- 비동기 HTT_ 통신 -> Ajax
+- 라이브러리 -> request, axios, jQuery
+- fetch() : HTTP 비동기 통신, 자바스크립트(브라우저) 내장
+
+    fetch(url, options)
+        .then((response) => ...)
+        .catch((error) => ... )
+
+첫번째 매개변수 : url
+두번째 매개변수 : 옵션 객체
+반환 : Promise 타입의 객체 (API 호출이 성공 했을경우 response 객체, 실패했을 경우 error 객체)
+
